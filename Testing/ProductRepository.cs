@@ -31,6 +31,7 @@ namespace Testing
              new { name = product.Name, price = product.Price, id = product.ProductID });
         }
         //Implementation of the methods from IProductRepository
+        //Inserting into a database
         public void InsertProduct(Product productToInsert)
         {
             _conn.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES (@name, @price, @categoryID);",
@@ -48,6 +49,13 @@ namespace Testing
             var product = new Product();
             product.Categories = categoryList;
             return product;
+        }
+        //Deleting from Database
+        public void DeleteProduct(Product product)
+        {
+            _conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;", new { id = product.ProductID });
+            _conn.Execute("DELETE FROM Sales WHERE ProductID = @id;", new { id = product.ProductID });
+            _conn.Execute("DELETE FROM Products WHERE ProductID = @id;", new { id = product.ProductID });
         }
     }
 }

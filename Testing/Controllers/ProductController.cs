@@ -59,5 +59,11 @@ namespace Testing.Controllers
             repo.InsertProduct(productToInsert);
             return RedirectToAction("Index");
         }
+        //Deleting from Database
+        public IActionResult DeleteProduct(Product product)
+        {
+            repo.DeleteProduct(product);
+            return RedirectToAction("Index");
+        }
     }
 }
